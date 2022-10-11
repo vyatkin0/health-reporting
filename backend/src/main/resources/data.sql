@@ -1,0 +1,11 @@
+insert into users(type_id, name, uuid, created_at, created_by) values (1, 'Administrator', '00000000-0000-0000-0000-000000000001', '2022-01-01', 0);
+insert into users(type_id, name, uuid, created_at, created_by) values (2, 'Doctor1', '00000000-0000-0000-0000-000000000002', '2022-01-01', 0);
+insert into users(type_id, name, uuid, created_at, created_by) values (2, 'Doctor2', '00000000-0000-0000-0000-000000000003', '2022-01-01', 0);
+insert into users(type_id, name, uuid, created_at, created_by) values (3, 'Patient1', '00000000-0000-0000-0000-000000000004', '2022-01-01', 2);
+insert into users(type_id, name, uuid, created_at, created_by) values (3, 'Patient2', '00000000-0000-0000-0000-000000000005', '2022-01-01', 2);
+insert into users(type_id, name, uuid, created_at, created_by) values (3, 'Patient3', '00000000-0000-0000-0000-000000000006', '2022-01-01', 3);
+insert into users(type_id, name, uuid, created_at, created_by) values (3, 'Patient4', '00000000-0000-0000-0000-000000000007', '2022-01-01', 3);
+insert into reports(user_id, temperature, pulse, blood_pressure_systolic, blood_pressure_diastolic, comment, created_at) values (4, 366, 61, 121, 81, 'patient1', '2022-01-01');
+insert into reports(user_id, temperature, pulse, blood_pressure_systolic, blood_pressure_diastolic, comment, created_at) values (5, 367, 62, 122, 82, 'patient2', '2022-01-01');
+insert into reports(user_id, temperature, pulse, blood_pressure_systolic, blood_pressure_diastolic, comment, created_at) values (6, 368, 63, 123, 83, 'patient3', '2022-01-01');
+insert into reports(user_id, temperature, pulse, blood_pressure_systolic, blood_pressure_diastolic, comment, created_at) values (7, 369, 64, 124, 84, 'patient4', '2022-01-01');

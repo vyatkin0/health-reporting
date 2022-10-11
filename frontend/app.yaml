@@ -1,0 +1,26 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+handlers:
+- url: /
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /admin.*
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /doctor.*
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /patient.*
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /report.*
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /
+  static_dir: www
