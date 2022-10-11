@@ -1,2 +1,2 @@
 # health-reporting
-Example of simple web application for health reporting
+Example of a simple web application for health reporting
