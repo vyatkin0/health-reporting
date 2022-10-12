@@ -19,7 +19,7 @@ $ ./gradlew bootRun
 or
 
 ```
-$ java -jar backend\build\libs\health_reporting-0.0.1.jar
+$ java -jar ./backend/build/libs/health_reporting-0.0.1.jar
 ```
 
 That's it!
