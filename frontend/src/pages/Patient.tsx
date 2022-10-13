@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Box,
     FormControl,
@@ -9,7 +10,6 @@ import {
 import AlertDialog from '../components/AlertDialog';
 import Button from '../components/Button';
 import Checkbox from '../components/Checkbox';
-import React from 'react';
 import ReportInput from '../components/ReportInput';
 import Spin from '../components/Spin';
 import { formFetch } from '../api';
@@ -42,17 +42,17 @@ function postReport(userId: string, report: FormData) {
     return formFetch(userId, report, '/report');
 }
 
-const validityReducer = (state: ValidityState, action: { type: string; payload: boolean;}): ValidityState => {
-    if(state[action.type] === action.payload) {
+const validityReducer = (state: ValidityState, action: { type: string; payload: boolean; }): ValidityState => {
+    if (state[action.type] === action.payload) {
         return state;
     }
-    return {...state, [action.type]: action.payload};
+    return { ...state, [action.type]: action.payload };
 };
 
 export default function Patient() {
     const [submitDisabled, setSubmitDisabled] = React.useState(true);
     const [isReportLoading, setReportLoading] = React.useState(false);
-    const [alertDialog, setAlert] = React.useState(undefined as AlertDialogState | undefined);
+    const [alertDialog, setAlert] = React.useState<AlertDialogState>();
     const [validity, dispatchValidity] = React.useReducer(validityReducer, {});
     const location = useLocation();
     const userId = location.state?.id || '';
@@ -173,7 +173,7 @@ export default function Patient() {
                 inputProps={commentInputProps}
                 helperText='Maximum 500 character'
                 multiline
-                maxRows = {4}
+                maxRows={4}
                 error={validity.comment}
             />
             <FormControl>

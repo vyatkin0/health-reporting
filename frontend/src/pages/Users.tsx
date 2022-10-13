@@ -1,3 +1,4 @@
+import React from 'react';
 import { Box, MenuItem, Typography } from '@mui/material';
 import UsersTable, { User, UserType } from '../components/UsersTable';
 import { deleteFetch, getFetch, postFetch, putFetch } from '../api';
@@ -6,7 +7,6 @@ import AlertDialog from '../components/AlertDialog';
 import Button from '../components/Button';
 import Link from '../components/Link';
 import LinkCopy from '../components/LinkCopy';
-import React from 'react';
 import Spin from '../components/Spin';
 import { TextField } from '../components/TextField';
 import { styled } from '@mui/material/styles';
@@ -79,7 +79,7 @@ const userTypes = [
     },
 ];
 
-const sx={ minWidth: 150 };
+const sx = { minWidth: 150 };
 
 export default function Users(props: UsersProps) {
     const titleLower = props.pageType === UserType.Doctor ? 'patient' : 'user';
@@ -95,7 +95,7 @@ export default function Users(props: UsersProps) {
 
     const [editedUser, setEditedUser] = React.useState(initEditedUser);
 
-    const [alertDialog, setAlert] = React.useState(undefined as AlertDialogState | undefined);
+    const [alertDialog, setAlert] = React.useState<AlertDialogState>();
 
     const [users, setUsers] = React.useState(initUsers);
 
@@ -302,7 +302,7 @@ export default function Users(props: UsersProps) {
                 sx={sx}
                 select
                 label='Type'
-                value={editedUser.typeId||''}
+                value={editedUser.typeId || ''}
                 onChange={handleChangeType}
                 disabled={isUserLoading}
             >

@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Dialog,
     DialogActions,
@@ -7,7 +8,6 @@ import {
 } from '@mui/material';
 
 import Button from './Button';
-import React from 'react';
 
 interface AlertDialogProps {
     type: 'info' | 'error';

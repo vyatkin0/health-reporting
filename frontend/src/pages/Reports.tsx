@@ -39,7 +39,7 @@ export default function Reports() {
 
     const [rowsTotal, setRowsTotal] = React.useState(0);
 
-    const [alertDialog, setAlert] = React.useState(undefined as AlertDialogState | undefined);
+    const [alertDialog, setAlert] = React.useState<AlertDialogState>();
 
     const [reports, setReports] = React.useState(initReports);
 

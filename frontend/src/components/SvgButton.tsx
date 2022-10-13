@@ -1,6 +1,5 @@
-import { IconButton, SvgIcon, useTheme } from '@mui/material';
-
 import React from 'react';
+import { IconButton, SvgIcon, useTheme } from '@mui/material';
 
 export interface SvgButtonProps {
     disabled?: boolean;
