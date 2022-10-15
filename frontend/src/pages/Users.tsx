@@ -320,7 +320,9 @@ export default function Users(props: UsersProps) {
                     >
                         Save
                     </Button>
-                    <Button onClick={handleCancel}>
+                    <Button
+                        disabled={isUserLoading}
+                        onClick={handleCancel}>
                         Cancel
                     </Button>
                 </>
