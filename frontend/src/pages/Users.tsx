@@ -183,7 +183,7 @@ export default function Users(props: UsersProps) {
                         <Box>{titleUpper} was added successfully</Box>
                         <Box>
                             Link:{' '}
-                            <LinkCopy href={'/report/' + r.uuid}>{r.uuid}</LinkCopy>
+                            <LinkCopy to={'/report/' + r.uuid}>{r.uuid}</LinkCopy>
                         </Box>
                     </>,
                 });
@@ -335,7 +335,7 @@ export default function Users(props: UsersProps) {
                 </Button>
             )}
         </StyledBox>
-        {!isAdmin && <Typography variant='h3'><Link href={`/report/${userId}`}>Reports</Link></Typography>}
+        {!isAdmin && <Typography variant='h3'><Link to={`/report/${userId}`}>Reports</Link></Typography>}
         <MemoUsersTable
             userId={userId}
             users={users}

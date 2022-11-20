@@ -4,7 +4,7 @@ import Link from './Link';
 import { styled } from "@mui/material/styles";
 
 interface LinkCopyProps {
-    href: string;
+    to: string;
 }
 
 const StyledBox = styled(Box)`
@@ -21,11 +21,11 @@ function copyClipboard(link?: string) {
 
 export default function LinkCopy(props: React.PropsWithChildren<LinkCopyProps>) {
     return <StyledBox>
-        <Link href={props.href}>
+        <Link to={props.to}>
             {props.children}
         </Link>
-        {props.href && navigator.clipboard && (
-            <CopyButton onClick={() => copyClipboard(window.location.origin + props.href)} />
+        {props.to && navigator.clipboard && (
+            <CopyButton onClick={() => copyClipboard(window.location.origin + props.to)} />
         )}
     </StyledBox>;
 }

@@ -95,15 +95,15 @@ export default function UsersTable(props: UsersTableProps) {
                     switch (row.typeId) {
                         case UserType.Patient:
                             hrefPrefix = `/patient/`;
-                            nameComp = <Link href={`/report/${userId}/${row.uuid}`}>{row.name}</Link>;
+                            nameComp = <Link to={`/report/${userId}/${row.uuid}`}>{row.name}</Link>;
                             break;
                         case UserType.Doctor:
                             hrefPrefix = '/doctor/';
-                            nameComp = <Link href={`/report/${row.uuid}`}>{row.name}</Link>;
+                            nameComp = <Link to={`/report/${row.uuid}`}>{row.name}</Link>;
                             break;
                         case UserType.Admin:
                             hrefPrefix = '/admin/';
-                            nameComp = <Link href={`/report/${row.uuid}/00000000-0000-0000-0000-000000000000`}>{row.name}</Link>;
+                            nameComp = <Link to={`/report/${row.uuid}/00000000-0000-0000-0000-000000000000`}>{row.name}</Link>;
                             break;
                     }
 
@@ -115,7 +115,7 @@ export default function UsersTable(props: UsersTableProps) {
                             {userTypes[row.typeId] || row.typeId}
                         </TableCell>}
                         <TableCell>
-                            <LinkCopy href={hrefPrefix + row.uuid}>{row.uuid}</LinkCopy>
+                            <LinkCopy to={hrefPrefix + row.uuid}>{row.uuid}</LinkCopy>
                         </TableCell>
                         <TableCell align='center' sx={sx.w120}>
                             <EditButton
