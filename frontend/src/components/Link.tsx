@@ -1,7 +1,8 @@
-import { Link, LinkProps } from 'react-router-dom';
+import React from 'react';
+import { RouterContext } from 'react-router-slim';
 import { styled } from '@mui/material/styles';
 
-const StyledLink = styled(Link)(({ theme }) => ({
+const StyledLink = styled('a')(({ theme }) => ({
     textOverflow: 'ellipsis',
     overflow: 'hidden',
     maxWidth: 500,
@@ -15,8 +16,17 @@ const StyledLink = styled(Link)(({ theme }) => ({
     },
 }));
 
-export default function HealthLink(props: LinkProps) {
-    return <StyledLink {...props}>
-        {props.children}
-    </StyledLink>;
+interface LinkProps extends React.PropsWithChildren {
+    to: string;
+}
+
+export default function Link({ children, to }: LinkProps) {
+    const router = React.useContext<RouterContext>(RouterContext);
+    const navigate = router.navigate;
+    const onClick = React.useCallback((e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate?.(to);
+    }, [to, navigate]);
+
+    return <StyledLink href={to} onClick={onClick}>{children}</StyledLink>
 }

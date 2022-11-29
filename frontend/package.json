@@ -1,6 +1,6 @@
 {
   "name": "health-reporting",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@emotion/styled": "^11.10.4",
@@ -15,7 +15,7 @@
     "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.4.1",
+    "react-router-slim": "^0.0.1-beta.14",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.6",
     "typescript": "^4.4.2",

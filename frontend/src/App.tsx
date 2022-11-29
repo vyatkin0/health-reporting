@@ -1,11 +1,10 @@
+import React from 'react';
 import {
-    BrowserRouter,
-    Link,
-    Navigate,
+    Router,
     Route,
-    Routes,
-    useParams,
-} from 'react-router-dom';
+    RouterContext,
+    RouteContext,
+} from 'react-router-slim';
 
 import Patient from './pages/Patient';
 import Reports from './pages/Reports';
@@ -13,6 +12,7 @@ import { ThemeProvider } from '@mui/material';
 import { UserType } from './components/UsersTable';
 import Users from './pages/Users';
 import { createTheme } from '@mui/material/styles';
+import Link from './components/Link'
 
 const green = '#4197A0';
 const darkGreen = '#057080';
@@ -60,38 +60,35 @@ const theme = createTheme({
 });
 
 const NavigateToId = ({ to }: { to: string }) => {
-    const { id, userId } = useParams<{ id: string; userId: string }>();
-    return <Navigate replace to={to} state={{ id, userId }} />;
+    const router = React.useContext<RouterContext>(RouterContext);
+    const route = React.useContext<RouteContext>(RouteContext);
+    const id = route.params?.id;
+    const userId = route.params?.userId;
+    setTimeout(() => router.navigate?.(to, { id, userId }, true), 0);
+    return null;
 };
 
 export default function App() {
     return (
         <ThemeProvider theme={theme}>
-            <BrowserRouter>
-                <Routes>
-                    <Route
-                        path='/'
-                        element={
-                            <>
-                                <Link to='/patient/00000000-0000-0000-0000-000000000004'>Patient page</Link>
-                                <br />
-                                <Link to='/doctor/00000000-0000-0000-0000-000000000002'>Doctor page</Link>
-                                <br />
-                                <Link to='/admin/00000000-0000-0000-0000-000000000001'>Admin page</Link>
-                            </>
-                        }
-                    />
-                    <Route path='/admin' element={<Users pageType={UserType.Admin} />}/>
-                    <Route path='/admin/:id' element={<NavigateToId to='/admin' />}/>
-                    <Route path='/doctor' element={<Users pageType={UserType.Doctor} />}/>
-                    <Route path='/doctor/:id' element={<NavigateToId to='/doctor' />}/>
-                    <Route path='/patient' element={<Patient />} />
-                    <Route path='/patient/:id' element={<NavigateToId to='/patient' />}/>
-                    <Route path='/report' element={<Reports/>}/>
-                    <Route path='/report/:id' element={<NavigateToId to='/report' />}/>
-                    <Route path='/report/:id/:userId' element={<NavigateToId to='/report' />}/>
-                </Routes>
-            </BrowserRouter>
+            <Router>
+                <Route path='/'>
+                    <Link to='/patient/00000000-0000-0000-0000-000000000004'>Patient page</Link>
+                    <br />
+                    <Link to='/doctor/00000000-0000-0000-0000-000000000002'>Doctor page</Link>
+                    <br />
+                    <Link to='/admin/00000000-0000-0000-0000-000000000001'>Admin page</Link>
+                </Route>
+                <Route path='/admin'><Users pageType={UserType.Admin} /></Route>
+                <Route path='/admin/:id'><NavigateToId to='/admin' /></Route>
+                <Route path='/doctor'><Users pageType={UserType.Doctor} /></Route>
+                <Route path='/doctor/:id'><NavigateToId to='/doctor' /></Route>
+                <Route path='/patient'><Patient /></Route>
+                <Route path='/patient/:id' ><NavigateToId to='/patient' /></Route>
+                <Route path='/report' ><Reports /></Route>
+                <Route path='/report/:id'><NavigateToId to='/report' /></Route>
+                <Route path='/report/:id/:userId'><NavigateToId to='/report' /></Route>
+            </Router>
         </ThemeProvider>
     );
 }

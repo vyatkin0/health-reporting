@@ -10,7 +10,6 @@ import LinkCopy from '../components/LinkCopy';
 import Spin from '../components/Spin';
 import { TextField } from '../components/TextField';
 import { styled } from '@mui/material/styles';
-import { useLocation } from 'react-router-dom';
 
 interface UsersProps {
     pageType: UserType;
@@ -103,8 +102,7 @@ export default function Users(props: UsersProps) {
 
     const [isUserLoading, setUserLoading] = React.useState(false);
 
-    const location = useLocation();
-    const userId = location.state?.id || '';
+    const userId = window.history.state?.id || '';
 
     React.useEffect(() => {
         if (!userId) return;

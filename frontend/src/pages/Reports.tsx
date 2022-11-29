@@ -5,7 +5,6 @@ import React from 'react';
 import Spin from '../components/Spin';
 import { Typography } from '@mui/material';
 import { getFetch } from '../api';
-import { useLocation } from 'react-router-dom';
 
 interface AlertDialogState {
     title: string;
@@ -45,9 +44,8 @@ export default function Reports() {
 
     const [isLoading, setLoading] = React.useState(false);
 
-    const location = useLocation();
-    const doctorId = location.state?.id || '';
-    const userId = location.state?.userId || '';
+    const doctorId = window.history.state?.id || '';
+    const userId = window.history.state?.userId || '';
 
     React.useEffect(() => {
         if (!doctorId) return;

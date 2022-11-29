@@ -13,7 +13,6 @@ import Checkbox from '../components/Checkbox';
 import ReportInput from '../components/ReportInput';
 import Spin from '../components/Spin';
 import { formFetch } from '../api';
-import { useLocation } from 'react-router-dom';
 
 const MemoReportInput = React.memo(ReportInput);
 
@@ -54,8 +53,8 @@ export default function Patient() {
     const [isReportLoading, setReportLoading] = React.useState(false);
     const [alertDialog, setAlert] = React.useState<AlertDialogState>();
     const [validity, dispatchValidity] = React.useReducer(validityReducer, {});
-    const location = useLocation();
-    const userId = location.state?.id || '';
+
+    const userId = window.history.state?.id || '';
 
     const onAlertClose = React.useCallback((event: React.MouseEvent, reason: string) => {
         if (alertDialog?.type !== 'info' && (reason === 'backdropClick' || reason === 'escapeKeyDown')) {
