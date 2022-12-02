@@ -7,37 +7,9 @@ import Reports from './pages/Reports';
 import { UserType } from './components/UsersTable';
 import Users from './pages/Users';
 
-function setPathName(pathname: string) {
-    Object.defineProperty(window, 'location',
-        {
-            value: {
-                ancestorOrigins: {
-                    length: 0,
-                    contains: () => false,
-                    item: () => null,
-                    [Symbol.iterator]: function* () { },
-                },
-                hash: '',
-                host: '',
-                port: '',
-                protocol: '',
-                hostname: '',
-                href: '',
-                origin: '',
-                pathname: pathname || '/',
-                search: '',
-                assign: () => { },
-                reload: () => { },
-                replace: () => { },
-            },
-            writable: true,
-        }
-    );
-}
-
 const router = {
     match: (path: string, url: string) => ({ match: null, params: {} }),
-    navigate: (path: string, data?: any, replace?: boolean) => setPathName(path),
+    navigate: (path: string, data?: any, replace?: boolean) => window.history.pushState(data, '', path),
 }
 
 const route = {
@@ -59,7 +31,7 @@ describe('App tests', () => {
     });
 
     it('admin page', () => {
-        setPathName('/admin');
+        router.navigate('/admin', { id: '1', userId: '2' });
         render(<App />);
         const usersTitleElement = screen.getByText('Users');
         expect(usersTitleElement).toBeInTheDocument();
@@ -68,7 +40,7 @@ describe('App tests', () => {
     });
 
     it('doctor page', () => {
-        setPathName('/doctor');
+        router.navigate('/doctor', { id: '1', userId: '2' });
         render(<App />);
         const patientsTitleElement = screen.getByText('Patients');
         expect(patientsTitleElement).toBeInTheDocument();
@@ -77,7 +49,7 @@ describe('App tests', () => {
     });
 
     it('patient page', () => {
-        setPathName('/patient');
+        router.navigate('/patient', { id: '1', userId: '2' });
         render(<App />);
         const patientTitleElement = screen.getByText('Patient');
         expect(patientTitleElement).toBeInTheDocument();
@@ -87,7 +59,7 @@ describe('App tests', () => {
 });
 
 test('renders reports page', () => {
-    window.history.pushState({ id: '1', userId: '2' }, '');
+    router.navigate('', { id: '1', userId: '2' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -100,7 +72,7 @@ test('renders reports page', () => {
 });
 
 test('renders patient page', () => {
-    window.history.pushState({ id: '1' }, '');
+    router.navigate('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -113,7 +85,7 @@ test('renders patient page', () => {
 });
 
 test('renders doctor page', () => {
-    window.history.pushState({ id: '1' }, '');
+    router.navigate('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -127,7 +99,7 @@ test('renders doctor page', () => {
 });
 
 test('renders admin page', () => {
-    window.history.pushState({ id: '1' }, '');
+    router.navigate('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
