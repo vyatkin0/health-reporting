@@ -7,12 +7,12 @@ import Reports from './pages/Reports';
 import { UserType } from './components/UsersTable';
 import Users from './pages/Users';
 
-const router = {
+const router: RouterContext = {
     match: (path: string, url: string) => ({ match: null, params: {} }),
     navigate: (path: string, data?: any, replace?: boolean) => window.history.pushState(data, '', path),
 }
 
-const route = {
+const route: RouteContext = {
     path: '/',
     params: { id: '1', userId: '2' },
     matches: [{ match: null, params: {} }],
@@ -31,7 +31,7 @@ describe('App tests', () => {
     });
 
     it('admin page', () => {
-        router.navigate('/admin', { id: '1', userId: '2' });
+        router.navigate?.('/admin', { id: '1', userId: '2' });
         render(<App />);
         const usersTitleElement = screen.getByText('Users');
         expect(usersTitleElement).toBeInTheDocument();
@@ -40,7 +40,7 @@ describe('App tests', () => {
     });
 
     it('doctor page', () => {
-        router.navigate('/doctor', { id: '1', userId: '2' });
+        router.navigate?.('/doctor', { id: '1', userId: '2' });
         render(<App />);
         const patientsTitleElement = screen.getByText('Patients');
         expect(patientsTitleElement).toBeInTheDocument();
@@ -49,7 +49,7 @@ describe('App tests', () => {
     });
 
     it('patient page', () => {
-        router.navigate('/patient', { id: '1', userId: '2' });
+        router.navigate?.('/patient', { id: '1', userId: '2' });
         render(<App />);
         const patientTitleElement = screen.getByText('Patient');
         expect(patientTitleElement).toBeInTheDocument();
@@ -59,7 +59,7 @@ describe('App tests', () => {
 });
 
 test('renders reports page', () => {
-    router.navigate('', { id: '1', userId: '2' });
+    router.navigate?.('', { id: '1', userId: '2' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -72,7 +72,7 @@ test('renders reports page', () => {
 });
 
 test('renders patient page', () => {
-    router.navigate('', { id: '1' });
+    router.navigate?.('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -85,7 +85,7 @@ test('renders patient page', () => {
 });
 
 test('renders doctor page', () => {
-    router.navigate('', { id: '1' });
+    router.navigate?.('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
@@ -99,7 +99,7 @@ test('renders doctor page', () => {
 });
 
 test('renders admin page', () => {
-    router.navigate('', { id: '1' });
+    router.navigate?.('', { id: '1' });
     render(
         <RouterContext.Provider value={router}>
             <RouteContext.Provider value={route}>
