@@ -8,7 +8,7 @@ import { UserType } from './components/UsersTable';
 import Users from './pages/Users';
 
 const router: RouterContext = {
-    match: (path: string, url: string) => ({ match: null, params: {} }),
+    match: (path: string) => ({ match: null, params: {} }),
     navigate: (path: string, data?: any, replace?: boolean) => window.history.pushState(data, '', path),
 }
 
