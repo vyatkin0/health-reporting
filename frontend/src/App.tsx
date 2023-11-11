@@ -69,25 +69,31 @@ const NavigateToId = ({ to }: { to: string }) => {
 };
 
 export default function App() {
+    const base = process.env.PUBLIC_URL;
+
+    function navigate(path: string, data?: unknown) {
+        window.history.replaceState(data, '', base + path);
+    }
+
     return (
         <ThemeProvider theme={theme}>
-            <Router>
-                <Route path='/'>
+            <Router navigate={navigate}>
+                <Route path={base + '/'}>
                     <Link to='/patient/00000000-0000-0000-0000-000000000004'>Patient page</Link>
                     <br />
                     <Link to='/doctor/00000000-0000-0000-0000-000000000002'>Doctor page</Link>
                     <br />
                     <Link to='/admin/00000000-0000-0000-0000-000000000001'>Admin page</Link>
                 </Route>
-                <Route path='/admin'><Users pageType={UserType.Admin} /></Route>
-                <Route path='/admin/:id'><NavigateToId to='/admin' /></Route>
-                <Route path='/doctor'><Users pageType={UserType.Doctor} /></Route>
-                <Route path='/doctor/:id'><NavigateToId to='/doctor' /></Route>
-                <Route path='/patient'><Patient /></Route>
-                <Route path='/patient/:id' ><NavigateToId to='/patient' /></Route>
-                <Route path='/report' ><Reports /></Route>
-                <Route path='/report/:id'><NavigateToId to='/report' /></Route>
-                <Route path='/report/:id/:userId'><NavigateToId to='/report' /></Route>
+                <Route path={base + '/admin'}><Users pageType={UserType.Admin} /></Route>
+                <Route path={base + '/admin/:id'}><NavigateToId to='/admin' /></Route>
+                <Route path={base + '/doctor'}><Users pageType={UserType.Doctor} /></Route>
+                <Route path={base + '/doctor/:id'}><NavigateToId to='/doctor' /></Route>
+                <Route path={base + '/patient'}><Patient /></Route>
+                <Route path={base + '/patient/:id'} ><NavigateToId to='/patient' /></Route>
+                <Route path={base + '/report'} ><Reports /></Route>
+                <Route path={base + '/report/:id'}><NavigateToId to='/report' /></Route>
+                <Route path={base + '/report/:id/:userId'}><NavigateToId to='/report' /></Route>
             </Router>
         </ThemeProvider>
     );

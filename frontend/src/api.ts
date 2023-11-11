@@ -1,7 +1,7 @@
 const isDevMode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development';
 
 // backend URL
-const backend = (isDevMode && process.env.REACT_APP_BACKEND) || 'https://backend-dot-health-reporting.ew.r.appspot.com';
+const backend = (isDevMode && process.env.REACT_APP_BACKEND) || '/health-reporting/api';
 
 export function formFetch(userId: string, data: FormData, apiPath: string) {
     return doFetch(backend + apiPath, userId, 'POST', data);
@@ -49,7 +49,7 @@ async function doFetch(url: string, userId: string, method: string, body?: BodyI
         return response.json();
     } else {
         let error;
-        if (response.status === 404) {
+        if (response.status === 400) {
             try {
                 error = await response.json();
             }

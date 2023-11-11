@@ -1,4 +1,4 @@
-import {Box} from '@mui/material';
+import { Box } from '@mui/material';
 import CopyButton from './CopyButton';
 import Link from './Link';
 import { styled } from "@mui/material/styles";
@@ -25,7 +25,7 @@ export default function LinkCopy(props: React.PropsWithChildren<LinkCopyProps>) 
             {props.children}
         </Link>
         {props.to && navigator.clipboard && (
-            <CopyButton onClick={() => copyClipboard(window.location.origin + props.to)} />
+            <CopyButton onClick={() => copyClipboard(window.location.origin + process.env.PUBLIC_URL + props.to)} />
         )}
     </StyledBox>;
 }
